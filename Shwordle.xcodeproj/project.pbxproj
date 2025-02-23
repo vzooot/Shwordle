@@ -11,6 +11,7 @@
 		C346F8162D6BACB300142F97 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C346F8152D6BACB300142F97 /* FirebaseAuth */; };
 		C346F8182D6BACB300142F97 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C346F8172D6BACB300142F97 /* FirebaseFirestore */; };
 		C346F81A2D6BACB300142F97 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C346F8192D6BACB300142F97 /* FirebaseMessaging */; };
+		C346F8512D6BAFEF00142F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C346F8502D6BAFEF00142F97 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		C346F7E52D6B3E2600142F97 /* Shwordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shwordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C346F7F52D6B3E2800142F97 /* ShwordleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShwordleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C346F7FF2D6B3E2800142F97 /* ShwordleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShwordleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C346F8502D6BAFEF00142F97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -90,6 +92,7 @@
 				C346F7F82D6B3E2800142F97 /* ShwordleTests */,
 				C346F8022D6B3E2800142F97 /* ShwordleUITests */,
 				C346F7E62D6B3E2600142F97 /* Products */,
+				C346F8502D6BAFEF00142F97 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C346F8512D6BAFEF00142F97 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +431,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.Shwordle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.shwordle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -456,7 +460,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.Shwordle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.shwordle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
