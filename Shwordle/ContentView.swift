@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var gameManager: GameManager
+
     var body: some View {
-        ShwordleGameView()
+        if userManager.isLoggedIn {
+            ShwordleGameView()
+        } else {
+            LoginView(isLoggedIn: $userManager.isLoggedIn) // Pass the binding
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(UserManager.shared) // Provide UserManager for preview
+        .environmentObject(GameManager.shared) // Provide GameManager for preview
 }

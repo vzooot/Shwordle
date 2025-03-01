@@ -9,11 +9,12 @@ import FirebaseFirestore
 import SwiftUI
 
 struct ShwordleGameView: View {
-    @EnvironmentObject var gameManager: GameManager
+    @EnvironmentObject var gameManager: GameManager // Use @EnvironmentObject
     @StateObject var userManager = UserManager.shared
+    @State private var showLoginView: Bool = false // Add this state
     @State private var grid: [[(letter: String, state: TileState)]] = Array(
-        repeating: Array(repeating: ("", .empty), count: 5),
-        count: 6
+        repeating: Array(repeating: ("", .empty), count: 5), // 5 columns
+        count: 6 // 6 rows
     )
     @State private var currentRow: Int = 0
     @State private var currentColumn: Int = 0
@@ -35,40 +36,48 @@ struct ShwordleGameView: View {
 
     var body: some View {
         ZStack {
-            VStack {
-                WordleGridView(grid: grid, shake: $shake)
-                KeyboardView(
-                    letters: keyboardLetters,
-                    onKeyTap: handleKeyTap,
-                    keyStates: keyStates,
-                    isDisabled: gameOver
-                )
-                Spacer()
-            }
-            .padding()
-            .onAppear { fetchCurrentWord() }
+            if userManager.currentUser == nil {
+                // Show login view if not authenticated
+                LoginView(isLoggedIn: $showLoginView)
+            } else {
+                VStack {
+                    WordleGridView(grid: grid, shake: $shake)
+                    KeyboardView(
+                        letters: keyboardLetters,
+                        onKeyTap: handleKeyTap,
+                        keyStates: keyStates,
+                        isDisabled: gameOver
+                    )
+                    Spacer()
+                }
+                .padding()
+                .onAppear {
+                    fetchCurrentWord()
+                    listenToGameUpdates()
+                }
 
-            // Win Alert
-            if showWinAlert {
-                resultAlert(
-                    title: "You Win! 🎉",
-                    message: "Congratulations! You guessed the word!",
-                    primaryAction: { showSetNewWord = true }
-                )
-            }
+                // Win Alert
+                if showWinAlert {
+                    resultAlert(
+                        title: "You Win! 🎉",
+                        message: "Congratulations! You guessed the word!",
+                        primaryAction: { showSetNewWord = true }
+                    )
+                }
 
-            // Lose Alert
-            if showLoseAlert {
-                resultAlert(
-                    title: "Game Over 😞",
-                    message: "The word was: \(targetWord.uppercased())",
-                    primaryAction: { showSetNewWord = true }
-                )
-            }
+                // Lose Alert
+                if showLoseAlert {
+                    resultAlert(
+                        title: "Game Over 😞",
+                        message: "The word was: \(targetWord.uppercased())",
+                        primaryAction: { showSetNewWord = true }
+                    )
+                }
 
-            // Set New Word Popup
-            if showSetNewWord {
-                newWordPopup
+                // Set New Word Popup
+                if showSetNewWord {
+                    newWordPopup
+                }
             }
         }
     }
@@ -81,10 +90,11 @@ struct ShwordleGameView: View {
             Text(title)
                 .font(.title)
                 .padding()
+                .foregroundColor(.gray)
             Text(message)
                 .font(.headline)
                 .padding()
-
+                .foregroundColor(.gray)
             HStack {
                 Button("New Game") {
                     primaryAction()
@@ -214,6 +224,9 @@ struct ShwordleGameView: View {
             currentRow += 1
             currentColumn = 0
         }
+
+        // Submit move to Firestore
+        gameManager.submitMove(guess: guess)
     }
 
     // MARK: - Firebase Integration
@@ -227,6 +240,33 @@ struct ShwordleGameView: View {
             if let word = snapshot?.data()?["word"] as? String {
                 targetWord = word.lowercased()
             }
+        }
+    }
+
+    private func listenToGameUpdates() {
+        guard let gameId = gameManager.currentGame?.id else { return }
+
+        db.collection("games").document(gameId)
+            .addSnapshotListener { document, error in
+                guard let document = document else { return }
+                if let game = try? document.data(as: GameManager.Game.self) {
+                    self.updateGrid(with: game.moves)
+                }
+            }
+    }
+
+    private func updateGrid(with moves: [GameManager.Move]) {
+        // Reset the grid to 6 rows and 5 columns
+        grid = Array(repeating: Array(repeating: ("", .empty), count: 5), count: 6) // 6 rows, 5 columns
+        currentRow = 0
+        currentColumn = 0
+
+        // Replay all moves
+        for move in moves {
+            for (index, char) in move.guess.enumerated() {
+                grid[currentRow][index] = (String(char), .empty)
+            }
+            currentRow += 1
         }
     }
 
@@ -277,7 +317,7 @@ struct ShwordleGameView: View {
     }
 
     private func resetGame() {
-        grid = Array(repeating: Array(repeating: ("", .empty), count: 5), count: 6)
+        grid = Array(repeating: Array(repeating: ("", .empty), count: 5), count: 6) // Fixed syntax
         currentRow = 0
         currentColumn = 0
         keyStates = [:]
