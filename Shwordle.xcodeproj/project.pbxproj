@@ -1,0 +1,627 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C346F8142D6BACB300142F97 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C346F8132D6BACB300142F97 /* FirebaseAnalytics */; };
+		C346F8162D6BACB300142F97 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C346F8152D6BACB300142F97 /* FirebaseAuth */; };
+		C346F8182D6BACB300142F97 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C346F8172D6BACB300142F97 /* FirebaseFirestore */; };
+		C346F81A2D6BACB300142F97 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C346F8192D6BACB300142F97 /* FirebaseMessaging */; };
+		C346F8512D6BAFEF00142F97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C346F8502D6BAFEF00142F97 /* GoogleService-Info.plist */; };
+		C35DB7082D6F4C5400FE3FED /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = C35DB7072D6F4C5400FE3FED /* words.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C346F7F62D6B3E2800142F97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C346F7DD2D6B3E2600142F97 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C346F7E42D6B3E2600142F97;
+			remoteInfo = Shwordle;
+		};
+		C346F8002D6B3E2800142F97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C346F7DD2D6B3E2600142F97 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C346F7E42D6B3E2600142F97;
+			remoteInfo = Shwordle;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C346F7E52D6B3E2600142F97 /* Shwordle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shwordle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C346F7F52D6B3E2800142F97 /* ShwordleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShwordleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C346F7FF2D6B3E2800142F97 /* ShwordleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShwordleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C346F8502D6BAFEF00142F97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C35DB7072D6F4C5400FE3FED /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C346F7E72D6B3E2600142F97 /* Shwordle */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shwordle;
+			sourceTree = "<group>";
+		};
+		C346F7F82D6B3E2800142F97 /* ShwordleTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ShwordleTests;
+			sourceTree = "<group>";
+		};
+		C346F8022D6B3E2800142F97 /* ShwordleUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ShwordleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C346F7E22D6B3E2600142F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C346F81A2D6BACB300142F97 /* FirebaseMessaging in Frameworks */,
+				C346F8142D6BACB300142F97 /* FirebaseAnalytics in Frameworks */,
+				C346F8162D6BACB300142F97 /* FirebaseAuth in Frameworks */,
+				C346F8182D6BACB300142F97 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C346F7F22D6B3E2800142F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C346F7FC2D6B3E2800142F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C346F7DC2D6B3E2600142F97 = {
+			isa = PBXGroup;
+			children = (
+				C346F7E72D6B3E2600142F97 /* Shwordle */,
+				C346F7F82D6B3E2800142F97 /* ShwordleTests */,
+				C346F8022D6B3E2800142F97 /* ShwordleUITests */,
+				C346F7E62D6B3E2600142F97 /* Products */,
+				C346F8502D6BAFEF00142F97 /* GoogleService-Info.plist */,
+				C35DB7072D6F4C5400FE3FED /* words.txt */,
+			);
+			sourceTree = "<group>";
+		};
+		C346F7E62D6B3E2600142F97 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C346F7E52D6B3E2600142F97 /* Shwordle.app */,
+				C346F7F52D6B3E2800142F97 /* ShwordleTests.xctest */,
+				C346F7FF2D6B3E2800142F97 /* ShwordleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C346F7E42D6B3E2600142F97 /* Shwordle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C346F8092D6B3E2800142F97 /* Build configuration list for PBXNativeTarget "Shwordle" */;
+			buildPhases = (
+				C346F7E12D6B3E2600142F97 /* Sources */,
+				C346F7E22D6B3E2600142F97 /* Frameworks */,
+				C346F7E32D6B3E2600142F97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C346F7E72D6B3E2600142F97 /* Shwordle */,
+			);
+			name = Shwordle;
+			packageProductDependencies = (
+				C346F8132D6BACB300142F97 /* FirebaseAnalytics */,
+				C346F8152D6BACB300142F97 /* FirebaseAuth */,
+				C346F8172D6BACB300142F97 /* FirebaseFirestore */,
+				C346F8192D6BACB300142F97 /* FirebaseMessaging */,
+			);
+			productName = Shwordle;
+			productReference = C346F7E52D6B3E2600142F97 /* Shwordle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C346F7F42D6B3E2800142F97 /* ShwordleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C346F80C2D6B3E2800142F97 /* Build configuration list for PBXNativeTarget "ShwordleTests" */;
+			buildPhases = (
+				C346F7F12D6B3E2800142F97 /* Sources */,
+				C346F7F22D6B3E2800142F97 /* Frameworks */,
+				C346F7F32D6B3E2800142F97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C346F7F72D6B3E2800142F97 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C346F7F82D6B3E2800142F97 /* ShwordleTests */,
+			);
+			name = ShwordleTests;
+			packageProductDependencies = (
+			);
+			productName = ShwordleTests;
+			productReference = C346F7F52D6B3E2800142F97 /* ShwordleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C346F7FE2D6B3E2800142F97 /* ShwordleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C346F80F2D6B3E2800142F97 /* Build configuration list for PBXNativeTarget "ShwordleUITests" */;
+			buildPhases = (
+				C346F7FB2D6B3E2800142F97 /* Sources */,
+				C346F7FC2D6B3E2800142F97 /* Frameworks */,
+				C346F7FD2D6B3E2800142F97 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C346F8012D6B3E2800142F97 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C346F8022D6B3E2800142F97 /* ShwordleUITests */,
+			);
+			name = ShwordleUITests;
+			packageProductDependencies = (
+			);
+			productName = ShwordleUITests;
+			productReference = C346F7FF2D6B3E2800142F97 /* ShwordleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C346F7DD2D6B3E2600142F97 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					C346F7E42D6B3E2600142F97 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					C346F7F42D6B3E2800142F97 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = C346F7E42D6B3E2600142F97;
+					};
+					C346F7FE2D6B3E2800142F97 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = C346F7E42D6B3E2600142F97;
+					};
+				};
+			};
+			buildConfigurationList = C346F7E02D6B3E2600142F97 /* Build configuration list for PBXProject "Shwordle" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C346F7DC2D6B3E2600142F97;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C346F8122D6BACB300142F97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C346F7E62D6B3E2600142F97 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C346F7E42D6B3E2600142F97 /* Shwordle */,
+				C346F7F42D6B3E2800142F97 /* ShwordleTests */,
+				C346F7FE2D6B3E2800142F97 /* ShwordleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C346F7E32D6B3E2600142F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C35DB7082D6F4C5400FE3FED /* words.txt in Resources */,
+				C346F8512D6BAFEF00142F97 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C346F7F32D6B3E2800142F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C346F7FD2D6B3E2800142F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C346F7E12D6B3E2600142F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C346F7F12D6B3E2800142F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C346F7FB2D6B3E2800142F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C346F7F72D6B3E2800142F97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C346F7E42D6B3E2600142F97 /* Shwordle */;
+			targetProxy = C346F7F62D6B3E2800142F97 /* PBXContainerItemProxy */;
+		};
+		C346F8012D6B3E2800142F97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C346F7E42D6B3E2600142F97 /* Shwordle */;
+			targetProxy = C346F8002D6B3E2800142F97 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C346F8072D6B3E2800142F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C346F8082D6B3E2800142F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C346F80A2D6B3E2800142F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Shwordle/Preview Content\"";
+				DEVELOPMENT_TEAM = B637BE2R39;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Shwordle/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.shwordle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C346F80B2D6B3E2800142F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Shwordle/Preview Content\"";
+				DEVELOPMENT_TEAM = B637BE2R39;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Shwordle/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.shwordle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C346F80D2D6B3E2800142F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B637BE2R39;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.ShwordleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shwordle.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Shwordle";
+			};
+			name = Debug;
+		};
+		C346F80E2D6B3E2800142F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B637BE2R39;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.ShwordleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shwordle.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Shwordle";
+			};
+			name = Release;
+		};
+		C346F8102D6B3E2800142F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B637BE2R39;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.ShwordleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Shwordle;
+			};
+			name = Debug;
+		};
+		C346F8112D6B3E2800142F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B637BE2R39;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.woqomoqo.ShwordleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Shwordle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C346F7E02D6B3E2600142F97 /* Build configuration list for PBXProject "Shwordle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C346F8072D6B3E2800142F97 /* Debug */,
+				C346F8082D6B3E2800142F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C346F8092D6B3E2800142F97 /* Build configuration list for PBXNativeTarget "Shwordle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C346F80A2D6B3E2800142F97 /* Debug */,
+				C346F80B2D6B3E2800142F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C346F80C2D6B3E2800142F97 /* Build configuration list for PBXNativeTarget "ShwordleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C346F80D2D6B3E2800142F97 /* Debug */,
+				C346F80E2D6B3E2800142F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C346F80F2D6B3E2800142F97 /* Build configuration list for PBXNativeTarget "ShwordleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C346F8102D6B3E2800142F97 /* Debug */,
+				C346F8112D6B3E2800142F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C346F8122D6BACB300142F97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C346F8132D6BACB300142F97 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C346F8122D6BACB300142F97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		C346F8152D6BACB300142F97 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C346F8122D6BACB300142F97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		C346F8172D6BACB300142F97 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C346F8122D6BACB300142F97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		C346F8192D6BACB300142F97 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C346F8122D6BACB300142F97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C346F7DD2D6B3E2600142F97 /* Project object */;
+}
