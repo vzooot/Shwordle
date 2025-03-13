@@ -335,7 +335,7 @@ struct ShwordleGameView: View {
         guard !gameOver,
               let game = gameManager.currentGame,
               game.status == "in_progress" else { return }
- 
+
         let originalGuess = grid[currentRow].map { $0.letter }.joined()
         guard originalGuess.count == 5,
               WordList.contains(originalGuess.lowercased()) else {
@@ -359,7 +359,7 @@ struct ShwordleGameView: View {
 
             if isCorrect || isLastRow {
                 gameManager.endGame(won: isCorrect, gameId: game.id)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                DispatchQueue.main.async {
                     self.showEndAlert(won: isCorrect, word: game.word)
                 }
             } else {
@@ -427,7 +427,7 @@ struct ShwordleGameView: View {
     private func updateGrid(with moves: [GameManager.Move]) {
         guard let currentGame = gameManager.currentGame else { return }
         let targetWord = currentGame.word.lowercased()
-        
+
         grid = Array(repeating: Array(repeating: ("", .empty), count: 5), count: 6)
         currentRow = 0
         currentColumn = 0
@@ -464,7 +464,7 @@ struct ShwordleGameView: View {
 
         gameManager.cleanupOldGame(gameId: oldGameId)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.async {
             self.gameManager.createNewGame(word: newWord)
         }
 
@@ -501,11 +501,6 @@ struct ShwordleGameView: View {
         keyStates = [:]
         gameOver = false
         shake = false
-
-//        // Force UI update
-//        DispatchQueue.main.async {
-//            self.objectWillChange.send()
-//        }
     }
 }
 
