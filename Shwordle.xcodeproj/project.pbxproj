@@ -40,9 +40,22 @@
 		C35DB7072D6F4C5400FE3FED /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C3A845052D82EB7F00D2D1DA /* Exceptions for "Shwordle" folder in "Shwordle" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C346F7E42D6B3E2600142F97 /* Shwordle */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C346F7E72D6B3E2600142F97 /* Shwordle */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C3A845052D82EB7F00D2D1DA /* Exceptions for "Shwordle" folder in "Shwordle" target */,
+			);
 			path = Shwordle;
 			sourceTree = "<group>";
 		};
