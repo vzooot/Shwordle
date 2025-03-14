@@ -25,7 +25,6 @@ struct ShwordleGameView: View {
     @State private var gameOver: Bool = false
     @State private var showWinAlert: Bool = false
     @State private var showLoseAlert: Bool = false
-    @State private var showSetNewWord: Bool = false
     @State private var newWordInput: String = ""
     @State private var shake: Bool = false
     @State private var showJoinGameAlert: Bool = false
@@ -92,36 +91,16 @@ struct ShwordleGameView: View {
                 .cornerRadius(8)
             }
             .padding()
-
-            // Alerts and popups overlay - ONLY ONE COPY
-//            if (showWinAlert || showLoseAlert) && !alertDismissed {
-//                resultAlert(
-//                    title: showWinAlert ? "You Win! 🎉" : "Game Over 😞",
-//                    message: showWinAlert ?
-//                        "Congratulations! You guessed the word!" :
-//                        "The word was: \(targetWord.uppercased())"
-//                )
-//            }
-
-            if showSetNewWord {
-                newWordPopup
-            }
         }
         // Replace the alert code with:
         .alert(item: $gameResult) { result in
-            Alert(
-                title: Text(result == .win ? "You Win! 🎉" : "Game Over 😞"),
-                message: Text(result == .win ?
-                    "Congratulations! You guessed the word!" :
-                    "The word was: \(targetWord.uppercased())"),
-                primaryButton: .default(Text("New Game")) {
-                    // Directly show word input without resetting
-                    showSetNewWord = true
-                },
-                secondaryButton: .destructive(Text("Quit")) {
-                    gameManager.forceReset()
-                }
-            )
+            Alert(title: Text(result == .win ? "You Win! 🎉" : "Game Over 😞"),
+                  message: Text(result == .win ?
+                      "Congratulations! You guessed the word!" :
+                      "The word was: \(targetWord.uppercased())"),
+                  dismissButton: .default(Text("New Game"), action: {
+                      gameManager.forceReset()
+                  }))
         }
         .onAppear {
             if let game = gameManager.currentGame {
@@ -206,7 +185,6 @@ struct ShwordleGameView: View {
 
             if isLastPlayer {
                 Button("Start New Game") {
-                    showSetNewWord = true
                     alertDismissed = true
                 }
                 .buttonStyle(.borderedProminent)
@@ -222,42 +200,6 @@ struct ShwordleGameView: View {
         .cornerRadius(12)
     }
 
-    private var newWordPopup: some View {
-        VStack {
-            TextField("Enter 5-letter word", text: $newWordInput)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-                .autocapitalization(.none)
-                .onSubmit {
-                    createNewGameIfValid()
-                }
-
-            HStack {
-                Button("Cancel") {
-                    showSetNewWord = false
-                    newWordInput = ""
-                }
-                .padding()
-                .background(Color.gray)
-                .foregroundColor(.white)
-                .cornerRadius(8)
-
-                Button("Create Game") {
-                    createNewGameIfValid()
-                }
-                .padding()
-                .background(validateNewWord() ? Color.blue : Color.gray)
-                .foregroundColor(.white)
-                .cornerRadius(8)
-                .disabled(!validateNewWord())
-            }
-        }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(12)
-        .shadow(radius: 10)
-    }
-
     private func createNewGameIfValid() {
         print("🔄 Create new game validation started")
         guard validateNewWord() else {
@@ -270,7 +212,6 @@ struct ShwordleGameView: View {
         gameManager.createNewGame(word: newWordInput.lowercased())
 
         newWordInput = ""
-        showSetNewWord = false
         resetGame()
 
         print("🔥 New game ID: \(gameManager.activeGameID ?? "nil")")
@@ -468,7 +409,6 @@ struct ShwordleGameView: View {
             self.gameManager.createNewGame(word: newWord)
         }
 
-        showSetNewWord = false
         newWordInput = ""
     }
 
