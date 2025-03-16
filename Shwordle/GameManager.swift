@@ -16,6 +16,9 @@ class GameManager: ObservableObject {
     @Published var currentGame: Game?
     @Published var activeGameID: String?
 
+    @Published var lastGameResult: (word: String, winnerID: String)? = nil
+    @Published var canStartNewGame: Bool = false
+
     private var gameListener: ListenerRegistration?
     private var movesListener: ListenerRegistration?
 
@@ -47,8 +50,14 @@ class GameManager: ObservableObject {
         listenForActiveGame()
     }
 
-    // In GameManager.swift - Update the createNewGame function
     func createNewGame(word: String) {
+        // Reset state ONCE
+        forceReset() // Handles activeGameID/currentGame cleanup
+        lastGameResult = nil
+        canStartNewGame = false
+
+        print("🔄 Starting new game...")
+
         print("🔥 CREATE NEW GAME TRIGGERED")
         guard let userID = UserManager.shared.currentUser?.uid else {
             print("🚨 No user ID")
@@ -97,23 +106,34 @@ class GameManager: ObservableObject {
         currentGame = nil
     }
 
-    func endGame(won: Bool, gameId: String) {
-        // Remove the cleanup call
-        db.collection("games").document(gameId).updateData([
-            "status": won ? "completed" : "failed",
-            "endedAt": FieldValue.serverTimestamp(),
-            "lastPlayerId": currentGame?.moves.last?.playerId ?? NSNull()
-        ])
-    }
-
+    // Update cleanupGame
     func cleanupGame(gameId: String) {
         if activeGameID == gameId {
             gameListener?.remove()
             movesListener?.remove()
             activeGameID = nil
             currentGame = nil
-            print("🔄 Restarted listening after cleanup")
-            listenForActiveGame() // Restart active game listener
+            print("🔄 Cleaned up game \(gameId)")
+        }
+    }
+
+    func endGame(won: Bool, gameId: String) {
+        guard let game = currentGame else { return }
+        
+        // Capture last player from moves
+        let lastPlayerId = game.moves.last?.playerId ?? ""
+        print("🔑 Last player: \(lastPlayerId)")
+
+        // Update Firestore
+        db.collection("games").document(gameId).updateData([
+            "status": won ? "completed" : "failed",
+            "lastPlayerId": lastPlayerId
+        ]) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.lastGameResult = (game.word, lastPlayerId)
+                self?.canStartNewGame = (lastPlayerId == UserManager.shared.currentUser?.uid)
+                print("🚦 canStartNewGame: \(self?.canStartNewGame ?? false)")
+            }
         }
     }
 
@@ -121,35 +141,29 @@ class GameManager: ObservableObject {
 
     func listenForActiveGame() {
         gameListener?.remove()
-        print("🔥 STARTED Listening for active games...")
-
+        print("🔥 STARTED Listening for ACTIVE games")
+        
         gameListener = db.collection("games")
             .whereField("status", isEqualTo: "in_progress")
-            .limit(to: 1)
             .addSnapshotListener { [weak self] snapshot, _ in
                 guard let self = self else { return }
-                print("🔥 ACTIVE GAMES UPDATE: \(snapshot?.documents.count ?? 0) games")
-
-                // Existing logic remains...
-
-                if self.activeGameID != nil && snapshot?.documents.isEmpty == true {
-                    self.cleanupGame(gameId: self.activeGameID!)
-                    return
-                }
-
+                
+                print("🔥 Found \(snapshot?.documents.count ?? 0) active games")
+                
                 guard let document = snapshot?.documents.first else {
+                    print("🔥 No active games found")
                     return
                 }
-
+                
                 do {
                     let game = try document.data(as: Game.self)
-                    guard self.activeGameID != game.id else { return }
-
-                    self.activeGameID = game.id
-                    self.currentGame = game
-                    self.listenToGameChanges()
+                    print("✅ Active game loaded: \(game.id)")
+                    DispatchQueue.main.async {
+                        self.activeGameID = game.id
+                        self.currentGame = game
+                    }
                 } catch {
-                    print("Error decoding game: \(error)")
+                    print("🚨 Error decoding active game: \(error)")
                 }
             }
     }
@@ -255,36 +269,34 @@ class GameManager: ObservableObject {
     // MARK: - Real-time Updates
 
     func listenToGameChanges() {
-        guard let gameID = currentGame?.id else {
-            print("🛑 No game ID to listen to")
-            return
-        }
+        guard let gameID = currentGame?.id else { return }
 
-        // Remove existing listeners first
-        gameListener?.remove()
-        movesListener?.remove()
-
-        print("🔥 Listening to game: \(gameID)")
-
-        // Game document listener
         gameListener = db.collection("games").document(gameID)
             .addSnapshotListener { [weak self] snapshot, error in
+                guard let self = self else { return }
+
                 if let error = error {
-                    print("🚨 Game listener error: \(error.localizedDescription)")
+                    print("🚨 Game listener error: \(error)")
                     return
                 }
 
                 guard let snapshot = snapshot, snapshot.exists else {
                     print("🔥 Game document removed")
-                    self?.cleanupGame(gameId: gameID)
+                    self.cleanupGame(gameId: gameID)
                     return
                 }
 
                 do {
                     let game = try snapshot.data(as: Game.self)
-                    print("✅ Updated game status: \(game.status)")
                     DispatchQueue.main.async {
-                        self?.currentGame = game
+                        self.currentGame = game
+
+                        if game.status != "in_progress" {
+                            print("🔔 Game ended. Resetting activeGameID")
+                            self.activeGameID = nil // Clear active game
+                            self.lastGameResult = (game.word, game.lastPlayerId ?? "")
+                            self.canStartNewGame = (game.lastPlayerId == UserManager.shared.currentUser?.uid)
+                        }
                     }
                 } catch {
                     print("🚨 Game decoding error: \(error)")
