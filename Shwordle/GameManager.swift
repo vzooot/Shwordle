@@ -62,12 +62,12 @@ class GameManager: ObservableObject {
             print("🚨 Invalid word length: \(word)")
             return
         }
-        
+
         forceReset() // Critical: Clean previous game first
-        
+
         let gameRef = db.collection("games").document()
         print("🔥 New game ID: \(gameRef.documentID)")
-        
+
         let game = Game(
             id: gameRef.documentID,
             word: word.lowercased(),
@@ -77,7 +77,7 @@ class GameManager: ObservableObject {
             moves: [],
             lastPlayerId: nil
         )
-        
+
         do {
             try gameRef.setData(from: game)
             print("🔥 Firestore write succeeded")
@@ -112,6 +112,8 @@ class GameManager: ObservableObject {
             movesListener?.remove()
             activeGameID = nil
             currentGame = nil
+            print("🔄 Restarted listening after cleanup")
+            listenForActiveGame() // Restart active game listener
         }
     }
 
@@ -119,12 +121,16 @@ class GameManager: ObservableObject {
 
     func listenForActiveGame() {
         gameListener?.remove()
+        print("🔥 STARTED Listening for active games...")
 
         gameListener = db.collection("games")
             .whereField("status", isEqualTo: "in_progress")
             .limit(to: 1)
             .addSnapshotListener { [weak self] snapshot, _ in
                 guard let self = self else { return }
+                print("🔥 ACTIVE GAMES UPDATE: \(snapshot?.documents.count ?? 0) games")
+
+                // Existing logic remains...
 
                 if self.activeGameID != nil && snapshot?.documents.isEmpty == true {
                     self.cleanupGame(gameId: self.activeGameID!)
@@ -253,13 +259,13 @@ class GameManager: ObservableObject {
             print("🛑 No game ID to listen to")
             return
         }
-        
+
         // Remove existing listeners first
         gameListener?.remove()
         movesListener?.remove()
-        
+
         print("🔥 Listening to game: \(gameID)")
-        
+
         // Game document listener
         gameListener = db.collection("games").document(gameID)
             .addSnapshotListener { [weak self] snapshot, error in
@@ -267,13 +273,13 @@ class GameManager: ObservableObject {
                     print("🚨 Game listener error: \(error.localizedDescription)")
                     return
                 }
-                
+
                 guard let snapshot = snapshot, snapshot.exists else {
                     print("🔥 Game document removed")
                     self?.cleanupGame(gameId: gameID)
                     return
                 }
-                
+
                 do {
                     let game = try snapshot.data(as: Game.self)
                     print("✅ Updated game status: \(game.status)")
@@ -284,7 +290,7 @@ class GameManager: ObservableObject {
                     print("🚨 Game decoding error: \(error)")
                 }
             }
-        
+
         // Moves subcollection listener
         movesListener = db.collection("games").document(gameID)
             .collection("moves").order(by: "timestamp")
@@ -293,13 +299,13 @@ class GameManager: ObservableObject {
                     print("🚨 Moves listener error: \(error.localizedDescription)")
                     return
                 }
-                
+
                 guard let documents = snapshot?.documents else { return }
-                
+
                 let moves = documents.compactMap { doc in
                     try? doc.data(as: Move.self)
                 }
-                
+
                 print("✅ Received \(moves.count) moves")
                 DispatchQueue.main.async {
                     self?.currentGame?.moves = moves

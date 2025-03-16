@@ -109,9 +109,12 @@ struct ShwordleGameView: View {
             }
             gameManager.listenToGameChanges()
         }
+        // In ShwordleGameView's .onReceive modifier
         .onReceive(NotificationCenter.default.publisher(for: .didReceiveGameUpdateNotification)) { _ in
+            print("🔔 Received game update notification")
             guard let game = gameManager.currentGame else {
-                resetGame()
+                print("🔔 No current game, resetting")
+                self.resetGame()
                 return
             }
 

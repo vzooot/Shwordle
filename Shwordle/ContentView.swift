@@ -33,7 +33,12 @@ struct ContentView: View {
                 LoginView(isLoggedIn: $userManager.isLoggedIn)
             }
         }
-        .sheet(isPresented: $showWordInput) { // Add this sheet
+        .onAppear {
+            if userManager.isLoggedIn {
+                gameManager.listenForActiveGame()
+            }
+        }
+        .sheet(isPresented: $showWordInput) {
             WordInputView()
         }
     }
